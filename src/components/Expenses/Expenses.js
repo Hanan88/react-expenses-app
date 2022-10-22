@@ -1,7 +1,9 @@
+import React from "react";
+import Card from "../UI/Card";
 import ExpenseItem from "./ExpenseItem";
 import "./Expenses.css";
 
-function Expenses() {
+const Expenses = () => {
   const expenses = [
     {
       id: "e1",
@@ -25,12 +27,17 @@ function Expenses() {
   ];
 
   return (
-    <div className="expenses">
+    <Card className="expenses">
       {expenses.map((item) => (
-        <ExpenseItem title={item.title} amount={item.amount} date={item.date} />
+        <ExpenseItem
+          key={item.id}
+          title={item.title}
+          amount={item.amount}
+          date={item.date}
+        />
       ))}
-    </div>
+    </Card>
   );
-}
+};
 
 export default Expenses;
