@@ -4,12 +4,12 @@ import ExpenseDate from "./ExpenseDate";
 import "./ExpenseItem.css";
 
 const ExpenseItem = (props) => {
-  // let title = props.title;
   const [title, setTitle] = useState(props.title);
   const onChangeTitle = () => {
     setTitle("UPDATED!!!");
     console.log(title);
   };
+  // console.log(props.filteredYear, "fromItem");
   return (
     <Card className="expense-item">
       <ExpenseDate date={props.date} />
