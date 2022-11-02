@@ -9,22 +9,30 @@ const Expenses = (props) => {
 
   const filterByYear = (selectedYear) => {
     setFilteredYear(selectedYear);
-    console.log(selectedYear, "year");
   };
 
+  const filteredExpenses = props.expenses.filter((expense) => {
+    return expense.date.getFullYear().toString() === filteredYear;
+  });
+
+  let expenseContent = <p> No Item Here </p>;
+
+  if (filteredExpenses.length > 0) {
+    expenseContent = filteredExpenses.map((item) => (
+      <ExpenseItem
+        key={item.id}
+        title={item.title}
+        amount={item.amount}
+        date={item.date}
+        filteredYear={filteredYear}
+      />
+    ));
+  }
   return (
     <div>
       <Card className="expenses">
         <ExpensesFilter selected={filteredYear} onFilterByYear={filterByYear} />
-        {props.expenses.map((item) => (
-          <ExpenseItem
-            key={item.id}
-            title={item.title}
-            amount={item.amount}
-            date={item.date}
-            filteredYear={filteredYear}
-          />
-        ))}
+        {expenseContent}
       </Card>
     </div>
   );
